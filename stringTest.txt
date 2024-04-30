@@ -1,0 +1,9 @@
+https://www.timesjobs.com/candidate/job-search.html?searchType=personalizedSearch&from=submit&searchTextSrc=&searchTextText=&txtKeywords=nurse+assistant&txtLocation=
+
+https://www.timesjobs.com/candidate/job-search.html?from=submit&luceneResultSize=25&txtKeywords=nurse%20assistant&postWeek=60&searchType=personalizedSearch&actualTxtKeywords=nurse%20assistant&searchBy=0&rdoOperator=OR&pDate=I&sequence=2&startPage=1
+
+https://www.timesjobs.com/candidate/job-search.html?from=submit&luceneResultSize=25&txtKeywords=nurse%20assistant&postWeek=60&searchType=personalizedSearch&actualTxtKeywords=nurse%20assistant&searchBy=0&rdoOperator=OR&pDate=I&sequence=3&startPage=1
+
+https://www.timesjobs.com/candidate/job-search.html?from=submit&luceneResultSize=25&txtKeywords=nurse%20assistant&postWeek=60&searchType=personalizedSearch&actualTxtKeywords=nurse%20assistant&searchBy=0&rdoOperator=OR&pDate=I&sequence=11&startPage=11
+
+https://www.timesjobs.com/candidate/job-search.html?from=submit&luceneResultSize=25&txtKeywords=nurse%20assistant&postWeek=60&searchType=personalizedSearch&actualTxtKeywords=nurse%20assistant&searchBy=0&rdoOperator=OR&pDate=I&sequence=10&startPage=1
