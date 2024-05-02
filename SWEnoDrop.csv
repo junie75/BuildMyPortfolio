@@ -1,0 +1,460 @@
+Skill,Count
+javascript,71
+jquery,56
+c,50
+java,50
+html,48
+sql,45
+css,43
+mvc,41
+.net,38
+c#,38
+php,37
+debugging,35
+problem solving,34
+mysql,34
+asp.net,28
+git,28
+linux,27
+rest,27
+oops,25
+python,24
+html5,24
+database,24
+xml,24
+ajax,19
+json,18
+mobile,17
+bootstrap,16
+soap,14
+entity framework,14
+algorithms,14
+security,14
+oracle,13
+team player,13
+written communication,12
+svn,12
+api,12
+hibernate,11
+web api,11
+infrastructure,10
+spring,10
+information technology,10
+data structures,10
+windows,10
+oop,9
+object oriented programming,9
+wordpress,9
+software developer,9
+angularjs,9
+magento,9
+codeigniter,8
+linq,8
+fundamentals,8
+vb.net,8
+mongodb,8
+rdbms,8
+j2ee,7
+java programming,7
+mvvm,7
+docker,7
+soa,7
+microsoft technologies,7
+technical skills,7
+os,6
+drupal,6
+rest api,6
+visual studio,6
+web technologies,6
+testing,6
+itskills,6
+triggers,6
+cakephp,6
+zend,6
+pl  /  sql,5
+c#.net,5
+eclipse,5
+uml,5
+ipc,5
+jsp,5
+web development,5
+joomla,5
+php developer,4
+nosql,4
+embedded software,4
+scala,4
+spring boot,4
+bug fixing,4
+swing,4
+apache,4
+memory management,4
+messaging,4
+ooad,4
+environment,4
+microsoft .net,4
+devops,4
+unix,4
+laravel,4
+software design,4
+ruby,4
+big data,3
+web services,3
+angular,3
+production support,3
+ado.net,3
+phonegap,3
+asp .net,3
+middleware,3
+san,3
+multithreading,3
+microsoft azure,3
+i2c,3
+xamarin,3
+node.js,3
+service oriented architecture,3
+cake,3
+cloud computing,3
+telecom,3
+vb,3
+postgresql,3
+hl7,3
+coding,3
+storage,3
+net,3
+mvc architecture,3
+qa,3
+spring mvc,3
+singleton,2
+microservices,2
+protocol stack,2
+,2
+yii,2
+oscommerce,2
+software development,2
+server management,2
+asp.net c#,2
+.net developer,2
+symfony,2
+ejb,2
+computer application,2
+jee,2
+technology,2
+web application development,2
+java developer,2
+activex,2
+mentor,2
+n-tier,2
+wcf,2
+salesforce,2
+uart,2
+microcontroller,2
+javascript developer,2
+hardware,2
+apex,2
+web developer,2
+design patterns,2
+unit testing,2
+software requirements,2
+network programming,2
+data warehousing,2
+tfs,2
+installshield,2
+cassandra,2
+communication,2
+enterprise java,2
+hosting,2
+shell scripting,2
+django,2
+grunt,2
+smarty,2
+lamp,2
+autosys,2
+usb,2
+websphere,2
+github,2
+imaging,2
+maven,2
+ssrs,2
+ant,2
+software implementation,2
+t-sql,2
+mfc,2
+servlets,2
+director,2
+digital signal processing,2
+forms,2
+machine learning,2
+xsd,2
+web designing,2
+perl,2
+iam,2
+software delivery,2
+embedded software development,1
+software analysis,1
+documentation,1
+bluetooth,1
+dhtml,1
+rtos,1
+signal processing,1
+enterprisejava,1
+graphics,1
+wsdl,1
+dsp,1
+front end,1
+mysql db,1
+azure,1
+apim,1
+vc,1
+mvc 5,1
+salesforce solutions,1
+lightning web components,1
+weblogic,1
+win32,1
+wpf,1
+java swing,1
+devops tools,1
+l support,1
+client server,1
+tdd,1
+client server architecture,1
+rest  /  soap,1
+test driven development,1
+apache camel,1
+sdlc,1
+data structure and algorithms,1
+clearcase,1
+programming languages,1
+operating systems,1
+databases,1
+source control,1
+data mining,1
+debugger,1
+exception handling,1
+java ee,1
+canoe,1
+embedded c,1
+mvc framework,1
+cobol,1
+kendo ui,1
+testing tools,1
+j2ee technologies,1
+win32 api,1
+jaxb,1
+java or,1
+object oriented,1
+gdb,1
+oracle  /  mysql  /  ms sql,1
+servicenow,1
+ddd,1
+agile methodology,1
+user interface design,1
+senior software developer,1
+database management,1
+system management,1
+computer skills,1
+express.js,1
+knockoutjs,1
+junit,1
+msi,1
+windows xp,1
+software programmer,1
+php programmer,1
+i2s,1
+unix  /  linux,1
+machine vision,1
+communication protocols,1
+iot,1
+eclipse ide,1
+zigbee,1
+communication engineering,1
+image processing,1
+it,1
+sapui5,1
+database servers,1
+lld,1
+innovation,1
+lucene,1
+production environment,1
+bmc remedy,1
+jpa,1
+it engineer,1
+driver development,1
+bi,1
+test case preparation,1
+salesforce developer,1
+c# programming,1
+net core,1
+domain driven design,1
+rabbitmq,1
+android development,1
+device drivers,1
+senior telecommunication,1
+posix,1
+vxworks,1
+c programming,1
+unix   /   linux internals,1
+bsp,1
+performance testing,1
+radar,1
+automation testing,1
+cucumber,1
+qa engineer,1
+selenium,1
+unix shell scripting,1
+mobile handset testing,1
+c# .net,1
+protocol testing,1
+atg,1
+sharepoint,1
+network processor,1
+vba,1
+system specifications,1
+process engineering,1
+full stack development,1
+calibration,1
+umbraco,1
+erp  /  crm,1
+mssql,1
+typescript,1
+unix   /   linux,1
+business applications,1
+service oriented,1
+ece,1
+windows forms,1
+ip networking,1
+development team coordination,1
+technical requirements,1
+software architecture,1
+esb,1
+agile,1
+internet technologies,1
+information management,1
+microprocessor,1
+jtag,1
+testing methods,1
+reports,1
+ss7,1
+dialogic,1
+system architecture,1
+java se,1
+system software,1
+system validation,1
+embedded hardware,1
+software system,1
+developing software,1
+software system design,1
+software programming,1
+arm controller,1
+arm,1
+codeigniter framework,1
+natural language processing,1
+mentoring,1
+artificial intelligence,1
+pig,1
+hive,1
+software support,1
+it projects,1
+system programming,1
+web programming,1
+web based applications,1
+it skills,1
+struts,1
+software testing,1
+project delivery,1
+consultant,1
+rfid,1
+system analysis,1
+manual testing,1
+flume,1
+hadoop,1
+oozie,1
+sso,1
+aws,1
+apache spark,1
+spring framework,1
+mqtt,1
+access management,1
+pim,1
+wamp,1
+sqoop,1
+high performance computing,1
+jlpt,1
+language proficiency,1
+gradle,1
+security compliance,1
+exceptions,1
+project development,1
+software project,1
+hazard analysis,1
+technical design,1
+aftereffects,1
+ux designer,1
+typography,1
+authoring,1
+housing finance,1
+bse,1
+banking,1
+lending,1
+nse,1
+retail lending,1
+operating system,1
+asp. net,1
+bug tracking,1
+white box testing,1
+windows platform,1
+indesign,1
+brochures,1
+ux,1
+putty,1
+enhancements,1
+manufacturing engineer,1
+production,1
+design,1
+requirement analysis,1
+webkit,1
+web hosting,1
+photoshop,1
+dml,1
+xaml,1
+wix,1
+illustrator,1
+wireframes,1
+designing,1
+.net technologies,1
+application development,1
+sql server,1
+version control,1
+sap r,1
+integration testing,1
+hp quality center,1
+functional testing,1
+test data,1
+tandem,1
+web apis,1
+c#  /,1
+microsoft stack,1
+system testing,1
+software estimation,1
+procedures,1
+stored procedures,1
+technical leadership,1
+lead developer,1
+hp alm,1
+visual basic,1
+aop,1
+informatica,1
+.net framework,1
+technical architecture,1
+object oriented design,1
+senior developer,1
+jdbc,1
+data integration,1
+etl,1
+orchestration,1
+data quality,1
+sap bods,1
+teradata,1
+data services,1
+database modeling,1
+advanced java,1
+visualforce,1

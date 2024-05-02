@@ -22,6 +22,14 @@ body {
   /* margin-top: 60px; */
 }
 
+.topContainer {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+}
+
 .prompt {
   color: antiquewhite;
   font-size: 30px;
@@ -29,6 +37,7 @@ body {
 }
 
 .searchDiv {
+  /* flex: 1; */
   display: flex;
   flex-direction: row;
   column-gap: 5px;
@@ -55,6 +64,7 @@ body {
 } */
 
 .inputBox {
+  width: 100%;
   appearance: none;
   border: none;
   outline: none;
@@ -69,4 +79,57 @@ body {
   border-radius: 10px;
   /* width: 200px;
   height: 200px; */
+}
+
+.loadingBox {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  color: white;
+  font-size: 30px;
+  font-weight: bold;
+  justify-content: center;
+  align-items: center;
+}
+
+.resultsBox {
+  border: 1px solid white;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 0 10px;
+  border-radius: 10px;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  width: 60%;
+  color: white;
+  /* text-decoration: none; */
+  list-style: none;
+  justify-content: flex-start;
+  align-items: flex-start;
+  /* margin: 0 30px; */
+  /* text-align: center; */
+}
+
+.portfolioTxt {
+  /* font-size: 20px; */
+  font-weight: bold;
+  /* border: 1px dotted yellow; */
+}
+
+.results {
+  display: flex;
+  flex-direction: column;
+  /* border: 1px dotted yellow; */
+  flex: 1;
+  transform: translateX(50%);
+  /* padding: 10px 0; */
+}
+
+.skill {
+  display: flex;
+  flex: 1;
+  font-size: large;
+  flex-direction: column;
+  justify-content: space-between;
+  /* margin-bottom: 3px; */
 }
