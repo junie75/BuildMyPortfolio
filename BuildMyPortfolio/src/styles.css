@@ -1,25 +1,77 @@
-body {
-  background-color: royalblue;
-  margin: 0;
-  display: flex;
+:root {
+  --verdigris: #64b6ac;
+  --tiffany: #92dad4;
+  --celeste: #c0fdfb;
+  --puce: #bb7e8c;
+  --thistle: #c9b6be;
+}
 
-  justify-content: center;
-  align-items: center;
+* {
+  box-sizing: border-box;
+}
+
+/* .skillCard--verdigris {
+  background: linear-gradient(135deg, var(--verdigris), white);
+}
+
+.skillCard--tiffany {
+  background: linear-gradient(135deg, var(--tiffany), white);
+}
+
+.skillCard--celeste {
+  background: linear-gradient(135deg, var(--celeste), white);
+}
+
+.skillCard--puce {
+  background: linear-gradient(135deg, var(--puce), white);
+}
+
+.skillCard--thistle {
+  background: linear-gradient(135deg, var(--thistle), white);
+} */
+
+body {
+  background-color: #4169e1;
+  margin: 0;
+  position: relative;
+  /* height: 100vh;
+  width: 100vw; */
+  /* justify-content: center;
+  align-items: center; */
   user-select: none;
   /* font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; */
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-family: "Gill Sans", "Gill Sans MT", "Calibri", "Trebuchet MS",
+    sans-serif;
   font-family: Georgia, "Times New Roman", Times, serif;
 }
 
 .container {
-  height: 80vh;
-  width: 80vw;
+  /* height: 100%;
+  width: 100%; */
   /* border: 1px dotted yellow; */
   display: flex;
-  flex-direction: column;
+  flex: 1;
+  height: 80vh;
+  /* flex-direction: column; */
   align-items: center;
   justify-content: center;
+  /* margin: 10px; */
   /* margin-top: 60px; */
+}
+
+.grid-container {
+  /* border: 1px dotted yellow; */
+  /* grid-template-rows: 1fr 1fr 1fr; */
+  display: grid;
+  grid-template-rows: 1fr 3fr 5fr;
+  width: 80%;
+  height: 100%;
+  margin: auto;
+  /* Centering */
+  /* position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); */
 }
 
 .topContainer {
@@ -132,4 +184,135 @@ body {
   flex-direction: column;
   justify-content: space-between;
   /* margin-bottom: 3px; */
+}
+
+.header {
+  font-size: 30px;
+  font-weight: bold;
+  color: white;
+  padding: 20px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* grid-row: 1; */
+  /* grid-column: 1 / -1; Spans the entire grid */
+}
+
+.skillCard {
+  display: flex;
+  background-color: white;
+  border-radius: 10px;
+  /* flex: 1; */
+  /* height: 100%; */
+  /* /* height: 50%; */
+  /* width: calc(15vw - 20px); */
+  height: 280px;
+  width: 280px;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  padding: 20px;
+  margin: 10px;
+
+  /* align-self: center; */
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.cardTitle {
+  display: flex;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.cardText {
+  display: flex;
+  font-size: 12px;
+  width: 100%;
+  /* white-space: nowrap; */
+  /* overflow: hidden;
+  text-overflow: ellipsis; */
+}
+
+.carouselContainer {
+  display: flex;
+  justify-content: center;
+  /* grid-row: 2; */
+  /* grid-template-columns: repeat(5, 1fr); */
+  /* gap: 10px; */
+  /* height: 100%;
+  width: 100%;
+  display: flex;
+  flex: 1; */
+  /* flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap; */
+  /* overflow-x: scroll; */
+  /* align-content: center; */
+  /* border: 1px solid greenyellow; */
+}
+
+.chartsContainer {
+  /* border: 1px solid greenyellow; */
+  display: flex;
+  /* height: 100%;
+  width: 100%; */
+  /* flex: 1; */
+  flex-direction: row;
+  /* grid-row: 3; */
+  /* display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px; */
+  padding: 20px;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.chart1 {
+  /* flex: 3; */
+  /* /* background-color: rgb(187, 126, 140); */
+  background-color: rgba(255, 255, 255, 0.2);
+  /* background-color: #3b5249; */
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  height: 450px;
+  width: 900px;
+  margin: 5px;
+  padding: 10px;
+}
+.chart2 {
+  /* flex: 2; */
+  background-color: rgba(50, 14, 59, 0.1);
+  background-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  height: 450px;
+  width: 450px;
+  margin: 5px;
+  padding: 10px;
+}
+
+@media (max-width: 7288px) {
+  .grid-container {
+    height: 60%;
+    width: 60%;
+    margin: 20px;
+    /* grid-template-rows: 1fr 1fr 1fr; */
+  }
+
+  .skillCard {
+    /* width: calc(15vw - 20px); */
+    height: 250px;
+    width: 250px;
+  }
+
+  .chart1 {
+    height: 350px;
+    width: 700px;
+  }
+
+  .chart2 {
+    height: 350px;
+    width: 350px;
+  }
 }
