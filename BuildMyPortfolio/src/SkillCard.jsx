@@ -1,6 +1,8 @@
 import React from "react";
 
+//receives the skill object and the index of the skill as well as capitalization function
 function SkillCard({ skill, capitalizeFirstLetter, index }) {
+  //array of colors to be used for the skill cards
   const colors = [
     "var(--verdigris)",
     "var(--tiffany)",
@@ -9,6 +11,7 @@ function SkillCard({ skill, capitalizeFirstLetter, index }) {
     "var(--thistle)",
   ];
 
+  //shorten the description to less than 300 characters
   let truncatedDescription =
     skill.Description.length > 100
       ? skill.Description.substring(0, 300) + "..."
@@ -19,19 +22,10 @@ function SkillCard({ skill, capitalizeFirstLetter, index }) {
       className="skillCard"
       style={{
         backgroundColor: colors[index % colors.length],
-        // background: `linear-gradient(135deg, ${
-        //   colors[index % colors.length]
-        // }, white 99%)`,
       }}
     >
       <p className="cardTitle">{capitalizeFirstLetter(skill.Skill)}</p>
-      <p className="cardText">
-        {/* Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laborum iure
-        corrupti molestias iste impedit tempora a laudantium. Modi, assumenda
-        sapiente, recusandae rerum ut voluptatibus totam vel quasi error
-        exercitationem dolore? */}
-        {truncatedDescription}
-      </p>
+      <p className="cardText">{truncatedDescription}</p>
     </div>
   );
 }

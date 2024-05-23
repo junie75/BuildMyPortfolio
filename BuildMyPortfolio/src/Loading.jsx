@@ -1,7 +1,9 @@
 import React from "react";
-import { hourglass } from "ldrs";
+import { hourglass } from "ldrs"; //hourglass loading animation icon
 
+//receive loading texts
 function Loading({ text }) {
+  //initialize the hourglass loading icon
   hourglass.register();
   return (
     <div className="loadingBox">
