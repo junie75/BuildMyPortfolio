@@ -120,11 +120,20 @@ def get_wikipedia_description(skill):
     else:
         query = f"what is {skill}"
     
+    # try:
+    #     # Get Wikipedia page summary
+    #     summary = wikipedia.summary(query)
+    #     # print(summary)
+    #     return summary
     try:
-        # Get Wikipedia page summary
-        summary = wikipedia.summary(query)
-        # print(summary)
-        return summary
+        # Get Wikipedia page object
+        page = wikipedia.page(query)
+        
+        # Extract summary and page URL
+        summary = page.summary
+        url = page.url
+        
+        return summary, url
     
     except wikipedia.exceptions.DisambiguationError as e:
         # Handle disambiguation pages
@@ -135,7 +144,7 @@ def get_wikipedia_description(skill):
         
     except wikipedia.exceptions.PageError:
         # Handle page not found
-        return None
+        return None, None
 
 
 def get_skills_json(job):
@@ -197,10 +206,10 @@ def get_skills_json(job):
         skill = row['Skill']
         count = row['Count']
         skill_percentage = calculate_skill_percentage(skill, df)
-        skill_description = get_wikipedia_description(skill)
+        skill_description, page_url = get_wikipedia_description(skill)
 
         # Construct a dictionary for the skill
-        skill_data = {'Skill': skill, 'Count': count, 'Percentage': skill_percentage, 'Description': skill_description}
+        skill_data = {'Skill': skill, 'Count': count, 'Percentage': skill_percentage, 'Description': skill_description, "URL": page_url}
 
         # Add the skill data to the list
         json_data.append(skill_data)

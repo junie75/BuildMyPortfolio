@@ -1,29 +1,15 @@
 
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 from SkillScraper import get_skills_json
+import os
 #create app instance
 app = Flask(__name__)
 
 #accept all origins
 cors = CORS(app)
 
-# #Members API Route
-# @app.route("/members")
-# def members():
-#     return jsonify({"members": ["Member1", "Member2", "Member3"]}), 200, {'Content-Type': 'application/json'}
 
-# @app.route("/api/users", methods=['GET'])
-# def users():
-#     return jsonify(
-#         {
-#             "users": [
-#                 "arpan",
-#                 "zack",
-#                 "jesse"
-#             ]
-#         }
-#     )
 
 @app.route("/api/skills", methods=['POST'])
 def python_skills():
@@ -31,6 +17,15 @@ def python_skills():
     skills = get_skills_json(job_search)
     print(job_search)
     return skills
+
+#Catch-all route to serve React app
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def serve_react_app(path):
+    if path != "" and os.path.exists(os.path.join(app.static_folder, path)):
+        return send_from_directory(app.static_folder, path)
+    else:
+        return send_from_directory(app.static_folder, 'index.html')
 
 if __name__ == "__main__":
     app.run(debug=True, port=8080)
