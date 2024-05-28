@@ -6,6 +6,7 @@ import Loading from "./Loading.jsx";
 import { Bar, Doughnut } from "react-chartjs-2";
 import "chart.js/auto";
 import SkillCard from "./SkillCard.jsx";
+import SkillModal from "./SkillModal.jsx";
 
 //color themes array for skills in the charts
 //first 5 colors match with the colors in skillcards.jsx
@@ -27,12 +28,40 @@ function Portfolio() {
   const { jobSearched, isLoading, setIsLoading, data, dreamJob, setData } =
     useContext(SharedStateContext);
 
+  // state variables used to expand the skillcard into a modal
+  const [modalTitle, setModalTitle] = useState("");
+  const [modalURL, setModalURL] = useState("");
+  const [modalText, setModalText] = useState("");
+  const [modalColor, setModalColor] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleContainerClick = (
+    skillTitle,
+    skillText,
+    skillColor,
+    skillURL
+  ) => {
+    setIsModalOpen(true);
+    setModalTitle(skillTitle);
+    setModalText(skillText);
+    setModalColor(skillColor);
+    setModalURL(skillURL);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   //used to naviate back to home page
   const navigate = useNavigate();
 
   useEffect(() => {
-    //upon navigation to the page, call skills API
-    fetchSkills();
+    if (jobSearched && dreamJob !== "") {
+      //upon navigation to the page, call skills API
+      fetchSkills();
+    } else {
+      navigate("/");
+    }
   }, []);
 
   //asynchronous call to backend server with job name to retrieve job skills data
@@ -65,7 +94,6 @@ function Portfolio() {
 
       //set state variable with data
       setData(responseData);
-      console.log(responseData);
     }
 
     //turn off loading indicator
@@ -87,27 +115,42 @@ function Portfolio() {
     <>
       {
         //if isLoading is true, render loading page
-        isLoading && <Loading text="Finding your needed skills" />
+        isLoading && (
+          <div className="container">
+            <Loading text="Finding your needed skills" />
+          </div>
+        )
       }
       {
         //once fetching is complete, render portfolio page with data
         jobSearched && !isLoading && (
           <div className="grid-container">
+            {isModalOpen && (
+              <SkillModal
+                title={modalTitle}
+                text={modalText}
+                onClose={closeModal}
+                modalColor={modalColor}
+                url={modalURL}
+              />
+            )}
             <div
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
+              className="headerContainer"
+              // style={{
+              //   display: "flex",
+              //   flexDirection: "row",
+              //   justifyContent: "center",
+              //   alignItems: "center",
+              // }}
             >
               <p
-                style={{
-                  position: "absolute",
-                  left: "5%",
-                  color: "white",
-                  textDecorationLine: "underline",
-                }}
+                className="searchAgain"
+                // style={{
+                //   position: "absolute",
+                //   left: "5%",
+                //   color: "white",
+                //   textDecorationLine: "underline",
+                // }}
                 //go back to home page
                 onClick={() => navigate("/")}
               >
@@ -130,6 +173,7 @@ function Portfolio() {
                       skill={skill}
                       index={index}
                       capitalizeFirstLetter={capitalizeFirstLetter}
+                      handleContainerClick={handleContainerClick}
                     />
                   ))
               }

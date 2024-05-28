@@ -8,6 +8,9 @@
 
 * {
   box-sizing: border-box;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.1) #4169e1;
 }
 
 /* .skillCard--verdigris {
@@ -74,6 +77,62 @@ body {
   transform: translate(-50%, -50%); */
 }
 
+.skillModal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.3);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+}
+
+.modalContent {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border-radius: 50px;
+  padding: 0 20px;
+  width: 50%;
+  height: 50%;
+  box-shadow: 2px 2px 30px rgba(0, 0, 0, 0.8);
+}
+
+.modalClose {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  font-size: 30px;
+}
+
+.modalHeader {
+  display: flex;
+  flex-direction: row;
+}
+
+.modalTitle {
+  display: flex;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.readMore {
+  display: flex;
+  font-size: 12px;
+  font-weight: bold;
+  align-self: flex-end;
+  color: rgba(0, 0, 0, 0.5);
+  text-decoration: underline;
+  cursor: pointer;
+}
 .topContainer {
   display: flex;
   flex-direction: column;
@@ -186,6 +245,20 @@ body {
   /* margin-bottom: 3px; */
 }
 
+.headerContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.searchAgain {
+  position: absolute;
+  left: 5%;
+  color: white;
+  text-decoration: underline;
+}
+
 .header {
   font-size: 30px;
   font-weight: bold;
@@ -211,11 +284,18 @@ body {
   justify-content: center;
   align-items: flex-start;
   flex-direction: column;
-  padding: 20px;
+  padding: 10px 20px;
   margin: 10px;
 
   /* align-self: center; */
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+  transition: 0.3s ease;
+}
+
+.skillCard:hover {
+  /* transition-property: all; */
+  box-shadow: 2px 2px 20px rgb(255, 255, 255);
+  cursor: pointer;
 }
 
 .cardTitle {
@@ -292,16 +372,278 @@ body {
   padding: 10px;
 }
 
-@media (max-width: 7288px) {
+/* Extra Large screens */
+/* @media (max-width: 1920px) {
+  .grid-container {
+    width: 70%;
+  }
+
+  .skillCard {
+    height: 250px;
+    width: 250px;
+  }
+
+  .chart1 {
+    height: 400px;
+    width: 800px;
+  }
+
+  .chart2 {
+    height: 400px;
+    width: 400px;
+  }
+} */
+
+/* Large screens 1920 px and below */
+@media (max-width: 1920px) {
+  .grid-container {
+    width: 90%;
+  }
+
+  .skillCard {
+    height: 220px;
+    width: 220px;
+  }
+
+  .chart1 {
+    height: 350px;
+    width: 700px;
+  }
+
+  .chart2 {
+    height: 350px;
+    width: 350px;
+  }
+}
+/* Medium screens 1265 px and below (tablets, small desktops */
+@media (max-width: 1265px) {
+  .grid-container {
+    width: 90%;
+  }
+
+  .header {
+    font-size: 24px;
+  }
+
+  .skillCard {
+    height: 180px;
+    width: 180px;
+  }
+
+  .cardTitle {
+    font-size: 14px;
+  }
+
+  .cardText {
+    font-size: 11px;
+  }
+
+  .chart1 {
+    height: 300px;
+    width: 600px;
+  }
+
+  .chart2 {
+    height: 300px;
+    width: 300px;
+  }
+}
+
+/* wrap content */
+@media (max-width: 1054px) {
+  .grid-container {
+    width: 100%;
+    grid-template-rows: 1fr 3fr 6fr;
+  }
+
+  .modalContent {
+    font-size: 15px;
+  }
+  .carouselContainer {
+    flex-wrap: wrap;
+  }
+
+  .skillCard {
+    height: 250px;
+    width: 250px;
+  }
+
+  .cardTitle {
+    font-size: 16px;
+  }
+
+  .cardText {
+    font-size: 14px;
+  }
+
+  .chartsContainer {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .chart1 {
+    height: 350px;
+    width: 700px;
+  }
+
+  .chart2 {
+    height: 700px;
+    width: 700px;
+  }
+}
+
+/* Medium screens */
+@media (max-width: 825px) {
+  .grid-container {
+    width: 90%;
+    /* grid-template-rows: 1fr 2fr 3fr; */
+  }
+
+  .modalTitle {
+    font-size: 18px;
+  }
+
+  .modalContent {
+    font-size: 14px;
+    width: 60%;
+  }
+
+  .searchDiv {
+    width: 70vw;
+  }
+
+  .resultsBox {
+    width: 80%;
+  }
+
+  .skillCard {
+    height: 180px;
+    width: 180px;
+  }
+
+  .cardTitle {
+    font-size: 14px;
+  }
+
+  .cardText {
+    font-size: 11px;
+  }
+
+  .chart1 {
+    height: 250px;
+    width: 500px;
+  }
+
+  .chart2 {
+    height: 500px;
+    width: 500px;
+  }
+}
+
+/* Small screens (phones) */
+@media (max-width: 684px) {
+  .grid-container {
+    width: 100%;
+    grid-template-rows: auto;
+  }
+
+  .modalTitle {
+    font-size: 16px;
+  }
+
+  .modalContent {
+    font-size: 14px;
+    width: 80%;
+  }
+
+  .carouselContainer {
+    /* flex-direction: column; */
+    /* display: grid; */
+    /* grid-template-columns: 1fr 1fr; */
+    /* grid-template-columns: repeat(2, 1fr); */
+    align-items: center;
+  }
+
+  .searchDiv {
+    width: 90vw;
+  }
+
+  .resultsBox {
+    width: 100%;
+  }
+
+  .skillCard {
+    height: 200px;
+    width: 200px;
+  }
+
+  .chart1 {
+    height: 200px;
+    width: 400px;
+  }
+
+  .chart2 {
+    height: 400px;
+    width: 400px;
+  }
+
+  .header {
+    font-size: 18px;
+  }
+
+  .searchAgain {
+    font-size: 12px;
+  }
+
+  .prompt {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 469px) {
+  .carouselContainer {
+    flex-direction: column;
+  }
+
+  .loadingTxt {
+    font-size: 20px;
+  }
+
+  .modalTitle {
+    font-size: 16px;
+  }
+
+  .modalContent {
+    font-size: 13px;
+    width: 95%;
+  }
+
+  .readMore {
+    font-size: 10px;
+  }
+
+  .chart1 {
+    height: 200px;
+    width: 400px;
+  }
+
+  .chart2 {
+    height: 400px;
+    width: 400px;
+  }
+}
+
+/* @media (max-width: 7288px) {
   .grid-container {
     height: 60%;
     width: 60%;
     margin: 20px;
-    /* grid-template-rows: 1fr 1fr 1fr; */
+    /* grid-template-rows: 1fr 1fr 1fr; /
   }
 
   .skillCard {
-    /* width: calc(15vw - 20px); */
+    /* width: calc(15vw - 20px); /
     height: 250px;
     width: 250px;
   }
@@ -315,4 +657,4 @@ body {
     height: 350px;
     width: 350px;
   }
-}
+} */
