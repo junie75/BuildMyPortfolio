@@ -70,7 +70,8 @@ function Portfolio() {
     const data = dreamJob;
 
     //app route of the api on server
-    const url = "http://localhost:8080/api/skills";
+    const url =
+      "https://buildmyportfolio-cb11632f5185.herokuapp.com/api/skills";
 
     //set post method and let server know json data is included in request, jsonify dream job name
     const options = {
