@@ -457,7 +457,7 @@ body {
   }
 
   .modalContent {
-    font-size: 15px;
+    font-size: 14px;
   }
   .carouselContainer {
     flex-wrap: wrap;
@@ -513,6 +513,10 @@ body {
     width: 70vw;
   }
 
+  .searchAgain {
+    font-size: 12px;
+  }
+
   .resultsBox {
     width: 80%;
   }
@@ -553,7 +557,7 @@ body {
   }
 
   .modalContent {
-    font-size: 14px;
+    font-size: 13px;
     width: 80%;
   }
 
@@ -588,12 +592,23 @@ body {
     width: 400px;
   }
 
+  .headerContainer {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
   .header {
-    font-size: 18px;
+    font-size: 16px;
   }
 
   .searchAgain {
-    font-size: 12px;
+    font-size: 10px;
+    position: relative;
+    display: flex;
+    align-self: first baseline;
+    /* left: 0; */
+    /* right: 15%; */
   }
 
   .prompt {
@@ -602,9 +617,9 @@ body {
 }
 
 @media (max-width: 469px) {
-  .carouselContainer {
+  /* .carouselContainer {
     flex-direction: column;
-  }
+  } */
 
   .loadingTxt {
     font-size: 20px;
@@ -619,8 +634,16 @@ body {
     width: 95%;
   }
 
-  .readMore {
+  .header {
+    font-size: 14px;
+  }
+
+  .searchAgain {
     font-size: 10px;
+  }
+
+  .readMore {
+    font-size: 12px;
   }
 
   .chart1 {

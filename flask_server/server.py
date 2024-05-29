@@ -2,6 +2,7 @@
 from flask import Flask, request, send_from_directory
 from flask_cors import CORS
 from flask_server.modules.SkillScraper import get_skills_json
+# from modules.SkillScraper import get_skills_json //for local testing
 import os
 #create app instance
 app = Flask(__name__)

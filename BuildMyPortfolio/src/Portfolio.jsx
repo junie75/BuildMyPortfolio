@@ -73,6 +73,9 @@ function Portfolio() {
     const url =
       "https://buildmyportfolio-cb11632f5185.herokuapp.com/api/skills";
 
+    //url for local testing
+    // const url = "http://localhost:8080/api/skills";
+
     //set post method and let server know json data is included in request, jsonify dream job name
     const options = {
       method: "POST",
