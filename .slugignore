@@ -1,0 +1,44 @@
+# Ignore Python bytecode and cache files
+
+\*.pyc
+**pycache**/
+
+# Ignore local environment settings
+
+.env
+\*.env
+
+# Ignore virtual environments
+
+venv/
+.virtualenv/
+
+# Ignore local logs
+
+\*.log
+
+# Ignore local data files
+
+_.sqlite3
+_.csv
+
+# Ignore node_modules if you are using Node.js
+
+node_modules/
+
+# Ignore documentation and tests
+
+docs/
+tests/
+
+# Ignore other large files
+
+_.mp4
+_.mov
+_.pdf
+_.jpg
+_.png
+_.svg
+
+BuildMyPortfolio/
+build-my-portfolio/
