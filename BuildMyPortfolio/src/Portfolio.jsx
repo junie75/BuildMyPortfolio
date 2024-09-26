@@ -56,25 +56,32 @@ function Portfolio() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    console.log("useEffect called"); // Debugging line
+    const abortController = new AbortController();
     if (jobSearched && dreamJob !== "") {
       //upon navigation to the page, call skills API
       fetchSkills();
     } else {
       navigate("/");
     }
+
+    return () => {
+      abortController.abort();
+    };
   }, []);
 
   //asynchronous call to backend server with job name to retrieve job skills data
   const fetchSkills = async () => {
+    console.log("fetchSkills called"); // Debugging line
     //set job name as json data
     const data = dreamJob;
 
     //app route of the api on server
-    const url =
-      "https://buildmyportfolio-cb11632f5185.herokuapp.com/api/skills";
+    // const url =
+    //   "https://buildmyportfolio-cb11632f5185.herokuapp.com/api/skills";
 
     //url for local testing
-    // const url = "http://localhost:8080/api/skills";
+    const url = "http://localhost:8080/api/skills";
 
     //set post method and let server know json data is included in request, jsonify dream job name
     const options = {
@@ -95,7 +102,7 @@ function Portfolio() {
     } else {
       //convert json to object
       const responseData = await response.json();
-
+      console.log(responseData);
       //set state variable with data
       setData(responseData);
     }

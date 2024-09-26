@@ -4,58 +4,125 @@ import numpy as np
 import pandas as pd
 import json
 import wikipedia
+import time
+from concurrent.futures import ThreadPoolExecutor, as_completed
+#profile code to determine bottlenecks
+import cProfile
+import re
+import pstats
+from pstats import SortKey
+# cProfile.run('re.compile("foo|bar")', 'restats')
+# p = pstats.Stats('restats')
+# p.strip_dirs().sort_stats(-1).print_stats()
+
+# Define a function with regular expression usage
+# def compile_regex():
+#     return re.compile("foo|bar")
+
+# # Run the code with profiling
+# cProfile.run('compile_regex()', 'restats')
+
+def fetch_page(url):
+    return requests.get(url).text
 
 def get_first_10_pages(job):
-
-    #create empty numpy array to hold skills
-    # skills_array = np.empty((0,))
+    
     job_skills_array = []
     job_posting = []
-
-    # set number of results(job postings) per page
-    results_per_page = 200
-
-    #GET THE HTML CODE
-    html_text = requests.get(f'https://www.timesjobs.com/candidate/job-search.html?from=submit&luceneResultSize={results_per_page}&txtKeywords={job}&postWeek=60&searchType=personalizedSearch&actualTxtKeywords={job}&searchBy=0&rdoOperator=OR&pDate=I&sequence=1&startPage=1').text
+    start_time = time.time()
     
-    #PARSE HTML CODE WITH LXML
+    results_per_page = 200
+    initial_url = f'https://www.timesjobs.com/candidate/job-search.html?from=submit&luceneResultSize={results_per_page}&txtKeywords={job}&postWeek=60&searchType=personalizedSearch&actualTxtKeywords={job}&searchBy=0&rdoOperator=OR&pDate=I&sequence=1&startPage=1'
+    
+    html_text = fetch_page(initial_url)
     soup = BeautifulSoup(html_text, 'lxml')
-
     total_results = int(soup.find('span', id='totolResultCountsId').text)
-    # print(total_results)
-
-    #initialize variables
+    
     job_count = 0
     sequence_iterator = 1
     start_page_iterator = 1
 
-    #while there are still job postings to parse and we have not reached the 500 job limit
-    while(job_count < total_results and job_count < 500):
-
-        #GET THE JOB CARDS
-        jobs = get_jobs_array(html_text)
-
-        #increment job count by the number of job cards we are about to parse
-        job_count += len(jobs)
-
-        #GET THE PREFERRED SKILLS FOR ALL JOBS ON THE PAGE
-        job_posting += get_job_postings(jobs)
-
-        #ADD SKILLS TO THE NUMPY ARRAY
-        job_skills_array.append(job_posting)
-
-        #increment sequence iterator
+    urls = []
+    while job_count < total_results and job_count < 500:
+        url = f'https://www.timesjobs.com/candidate/job-search.html?from=submit&luceneResultSize={results_per_page}&txtKeywords={job}&postWeek=60&searchType=personalizedSearch&actualTxtKeywords={job}&searchBy=0&rdoOperator=OR&pDate=I&sequence={sequence_iterator}&startPage={start_page_iterator}'
+        urls.append(url)
+        
         sequence_iterator += 1
-
-        #timesjobs splits pages by every 10, reset start_page iterator once first 10 pages is surpassed
-        #equivalent to pressing "next 10 pages"
-        if(start_page_iterator + 9 < sequence_iterator):
+        if start_page_iterator + 9 < sequence_iterator:
             start_page_iterator += 10
+        job_count += results_per_page
 
-        # Update HTML text for the next iteration
-        html_text = requests.get(f'https://www.timesjobs.com/candidate/job-search.html?from=submit&luceneResultSize={results_per_page}&txtKeywords={job}&postWeek=60&searchType=personalizedSearch&actualTxtKeywords={job}&searchBy=0&rdoOperator=OR&pDate=I&sequence={sequence_iterator}&startPage={start_page_iterator}').text
+    # Fetch the pages asynchronously using ThreadPoolExecutor
+    with ThreadPoolExecutor(max_workers=10) as executor:
+        #for each url, fetch the page using the fetch_page function
+        future_to_url = {executor.submit(fetch_page, url): url for url in urls}
+        for future in as_completed(future_to_url):
+            html_text = future.result()
+            # jobs = get_jobs_array(html_text)
+            # job_posting += get_job_postings(jobs)
+            job_posting += get_jobs_array(html_text)
+
+    duration = time.time() - start_time
+    print(f"Duration: {duration:.2f} seconds")
 
     return job_posting
+# def get_first_10_pages(job):
+
+#     #create empty numpy array to hold skills
+#     # skills_array = np.empty((0,))
+#     job_skills_array = []
+#     job_posting = []
+#     start_time = time.time()
+
+
+
+#     # set number of results(job postings) per page
+#     results_per_page = 200
+
+#     #GET THE HTML CODE
+#     html_text = requests.get(f'https://www.timesjobs.com/candidate/job-search.html?from=submit&luceneResultSize={results_per_page}&txtKeywords={job}&postWeek=60&searchType=personalizedSearch&actualTxtKeywords={job}&searchBy=0&rdoOperator=OR&pDate=I&sequence=1&startPage=1').text
+    
+#     #PARSE HTML CODE WITH LXML
+#     soup = BeautifulSoup(html_text, 'lxml')
+
+#     #find the total number of job postings
+#     total_results = int(soup.find('span', id='totolResultCountsId').text)
+#     # print(total_results)
+
+#     #initialize variables
+#     job_count = 0
+#     sequence_iterator = 1
+#     start_page_iterator = 1
+
+#     #while there are still job postings to parse and we have not reached the 500 job limit
+#     while(job_count < total_results and job_count < 500):
+
+#         #GET THE JOB CARDS
+#         jobs = get_jobs_array(html_text)
+
+#         #increment job count by the number of job cards we are about to parse
+#         job_count += len(jobs)
+
+#         #GET THE PREFERRED SKILLS FOR ALL JOBS ON THE PAGE
+#         job_posting += get_job_postings(jobs)
+
+#         #ADD SKILLS TO THE NUMPY ARRAY
+#         job_skills_array.append(job_posting)
+
+#         #increment sequence iterator
+#         sequence_iterator += 1
+
+#         #timesjobs splits pages by every 10, reset start_page iterator once first 10 pages is surpassed
+#         #equivalent to pressing "next 10 pages"
+#         if(start_page_iterator + 9 < sequence_iterator):
+#             start_page_iterator += 10
+
+#         # Update HTML text for the next iteration
+#         html_text = requests.get(f'https://www.timesjobs.com/candidate/job-search.html?from=submit&luceneResultSize={results_per_page}&txtKeywords={job}&postWeek=60&searchType=personalizedSearch&actualTxtKeywords={job}&searchBy=0&rdoOperator=OR&pDate=I&sequence={sequence_iterator}&startPage={start_page_iterator}').text
+
+#     duration = time.time() - start_time
+#     print(f"Duration: {duration:.2f} seconds")
+#     return job_posting
 
     
 
@@ -67,10 +134,10 @@ def get_jobs_array(html_text):
 
     #FIND ALL THE JOB CARDS
     jobs = soup.find_all('li', class_ = 'clearfix job-bx wht-shd-bx')
-    return jobs
+    # return jobs
 
 
-def get_job_postings(jobs):
+# def get_job_postings(jobs):
     # job_postings = np.empty((0,))
     job_postings = []
 
@@ -83,12 +150,27 @@ def get_job_postings(jobs):
         #MARKER AND LISTMARKER USED TO FILTER OUT CLASSES AND FIND THE SKILLS
         marker = job.find('ul', class_ = 'list-job-dtl clearfix')
         list_marker = marker.find_all('li')[1]
-        skills = list_marker.span.text.strip()
+        #UPDATE 9/26 The skills are now in a span tag with the class 'srp-skills', each skill is in its own span tag within skill_holder
+        skill_holder = list_marker.find('span', class_ = 'srp-skills')
+        
+        #initialize an empty list to hold the skills
+        skills = []
+
+        # Find all spans within skill_holder with the class 'srp-skills'
+        if skill_holder:
+            skill_spans = skill_holder.find_all('span')  # Get all span elements within skill_holder
+
+            # Iterate through each span and extract the text
+            for span in skill_spans:
+                skill = span.text.strip()  # Get the skill text and strip whitespace
+                skills.append(skill)  # Add the skill to the list
+
+        # skills = list_marker.span.text.strip()  # OLD CODE BEFORE 9/26 
 
         #strip, lowercase, and add each skill to an array
-        job_skills = [skill.strip().lower() for skill in skills.split(',')]
+        job_skills = [skill.strip().lower() for skill in skills]
 
-       
+        
         # Append company name and skills to the list as a dictionary
         job_postings.append({'Company': company_name, 'Skills': job_skills})
 
@@ -149,11 +231,18 @@ def get_wikipedia_description(skill):
 
 def get_skills_json(job):
 
+
+     # Profile the get_skills_json function
+    # profile = cProfile.Profile()
+    # profile.enable()
+
     #GET RAW DATA(array of objects with company name and a list of their skills per job posting)
     job_skills_array = get_first_10_pages(job)
+
     
     #convert object to a datafram
     df = pd.DataFrame(job_skills_array)
+    
 
     #*******CLEAN THE DATA*******
 
@@ -180,9 +269,10 @@ def get_skills_json(job):
     #sort the dataframe
     skill_counts_df_sorted = skill_counts_df.sort_values(by='Count', ascending=False)
 
+    # skill_counts_df_sorted.to_csv(f"../skill_counts_{job}.csv", index=False)
 
     # Drop rows where the count is less than 5
-    skill_counts_df_sorted = skill_counts_df_sorted[skill_counts_df['Count'] >= 5]
+    skill_counts_df_sorted = skill_counts_df_sorted[skill_counts_df['Count'] >= 10]
 
     # Calculate total count of skills
     total_count = skill_counts_df_sorted['Count'].sum()
@@ -196,6 +286,8 @@ def get_skills_json(job):
 
     # Get the top 20 skills with the highest count
     top_skills_df = skill_counts_df_sorted.head(20)
+
+    
 
 
     # Initialize an empty dictionary to store the JSON data
@@ -217,6 +309,21 @@ def get_skills_json(job):
 
     # Convert the dictionary to JSON
     json_output = json.dumps(json_data)
+
+    # profile.disable()
+    
+    # Save profiling results to a file
+    # profile.dump_stats('restats')
+
+    # Read the profiling stats and print
+    # p = pstats.Stats('restats')
+
+    # p.strip_dirs().sort_stats(-1).print_stats()
+    # Sort the stats by cumulative time
+    # p.sort_stats(pstats.SortKey.CUMULATIVE)
+
+    # Print the top 20 entries
+    # p.print_stats(20)
 
     return json_output
 
